@@ -1,0 +1,42 @@
+description <http://studioj.us/pkc-method-d#> as pkc-example-d {
+    
+    uses <http://studioj.us/pkc-method-v#> as pkc-example-v
+
+    //
+    //
+    // Example 1: mass
+    //
+    //
+
+    instance massQuantityKind : pkc-example-v:MassQuantityKind
+
+    instance gram : pkc-example-v:MassUnit
+    instance kilogram : pkc-example-v:MassUnit
+
+    //
+    //
+    // Example 2: length, height, width, diameter, radius
+    //
+    //
+
+    instance lengthQuantityKind : pkc-example-v:LengthQuantityKind
+
+    instance heightMeasurementPrinciple : pkc-example-v:HeightMeasurementPrinciple
+    instance widthMeasurementPrinciple : pkc-example-v:WidthMeasurementPrinciple
+    instance diameterMeasurementPrinciple : pkc-example-v:DiameterMeasurementPrinciple
+    instance radiusMeasurementPrinciple : pkc-example-v:RadiusMeasurementPrinciple
+
+    instance metre : pkc-example-v:LengthUnit
+    instance kilometre : pkc-example-v:LengthUnit
+
+    //
+    //
+    // Example 3: volume, section modulus
+    //
+    //
+
+    instance volumeQuantityKind : pkc-example-v:VolumeQuantityKind
+    instance sectionModulusQuantityKind : pkc-example-v:SectionModulusQuantityKind
+
+    instance metre_cubed : pkc-example-v:VolumeAndSectionModulusUnit
+}

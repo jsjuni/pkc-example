@@ -1,0 +1,194 @@
+vocabulary <http://studioj.us/pkc-method-v#> as pkc-method-v {
+
+	extends <http://www.w3.org/2001/XMLSchema#> as xsd
+    uses <http://studioj.us/pkc-method-d#> as pkc-method-d
+
+    concept QuantityKind
+
+    aspect HasQuantityKind
+
+    relation hasQuantityKind [
+        from HasQuantityKind
+        to QuantityKind
+        functional
+    ]
+
+    concept MeasurementPrinciple
+
+    aspect HasMeasurementPrinciple
+
+    relation hasMeasurementPrinciple [
+        from HasMeasurementPrinciple
+        to MeasurementPrinciple
+    ]
+
+    concept Quantity < HasQuantityKind, HasMeasurementPrinciple [
+        restricts hasQuantityKind to exactly 1 QuantityKind
+    ]
+
+    concept QuantityValue < HasQuantityKind, HasMeasurementPrinciple [
+        restricts hasQuantityKind to exactly 1 QuantityKind
+    ]
+
+    scalar property hasNumber [
+        domain QuantityValue
+        range xsd:double
+        functional
+    ]
+
+    relation hasUnit [
+        from QuantityValue
+        to Unit
+        functional
+    ]
+
+    relation ^measures [
+        from QuantityValue
+        to Quantity
+        reverse isMeasuredBy
+    ]
+
+    concept Unit
+
+    relation isUnitFor [
+        from Unit
+        to QuantityKind
+    ]
+
+    //
+    //
+    // Example 1: mass
+    //
+    //
+
+    concept MassQuantityKind < QuantityKind
+
+    concept MassQuantity < Quantity [
+        restricts hasQuantityKind to pkc-method-d:massQuantityKind
+        restricts all isMeasuredBy to MassQuantityValue
+    ]
+
+    concept MassQuantityValue < QuantityValue [
+        restricts hasQuantityKind to pkc-method-d:massQuantityKind
+        restricts all ^measures to MassQuantity
+        restricts all hasUnit to MassUnit
+    ]
+
+    concept MassUnit < Unit [
+        restricts isUnitFor to pkc-method-d:massQuantityKind
+    ]
+
+    //
+    //
+    // Example 2: length, height, width, diameter, radius
+    //
+    //
+
+    concept LengthQuantityKind < QuantityKind
+
+    concept LengthMeasurementPrinciple < MeasurementPrinciple
+    concept HeightMeasurementPrinciple < LengthMeasurementPrinciple
+    concept WidthMeasurementPrinciple < LengthMeasurementPrinciple
+    concept DiameterMeasurementPrinciple < WidthMeasurementPrinciple
+    concept RadiusMeasurementPrinciple < DiameterMeasurementPrinciple
+
+    concept LengthQuantity < Quantity [
+        restricts hasQuantityKind to pkc-method-d:lengthQuantityKind
+        restricts all isMeasuredBy to LengthQuantityValue
+    ]
+
+    concept HeightQuantity < LengthQuantity [
+        restricts hasMeasurementPrinciple to pkc-method-d:heightMeasurementPrinciple
+        restricts all isMeasuredBy to HeightQuantityValue
+    ]
+    
+    concept WidthQuantity < LengthQuantity [
+        restricts hasMeasurementPrinciple to pkc-method-d:widthMeasurementPrinciple
+        restricts all isMeasuredBy to WidthQuantityValue
+    ]
+
+   concept DiameterQuantity < LengthQuantity [
+        restricts hasMeasurementPrinciple to pkc-method-d:diameterMeasurementPrinciple
+        restricts all isMeasuredBy to DiameterQuantityValue
+    ]
+
+    concept RadiusQuantity < LengthQuantity [
+        restricts hasMeasurementPrinciple to pkc-method-d:radiusMeasurementPrinciple
+        restricts all isMeasuredBy to RadiusQuantityValue
+    ]
+
+    concept LengthQuantityValue < QuantityValue [
+        restricts hasQuantityKind to pkc-method-d:lengthQuantityKind
+        restricts all ^measures to LengthQuantity
+        restricts all hasUnit to LengthUnit
+    ]
+
+    concept HeightQuantityValue < QuantityValue [
+        restricts hasMeasurementPrinciple to pkc-method-d:heightMeasurementPrinciple
+        restricts all ^measures to HeightQuantity
+        restricts all hasUnit to LengthUnit
+    ]
+
+    concept WidthQuantityValue < LengthQuantityValue [
+        restricts hasMeasurementPrinciple to pkc-method-d:widthMeasurementPrinciple
+        restricts all ^measures to WidthQuantity
+    ]
+
+    concept DiameterQuantityValue < LengthQuantityValue [
+        restricts hasMeasurementPrinciple to pkc-method-d:diameterMeasurementPrinciple
+        restricts all ^measures to DiameterQuantity
+    ]
+
+    concept RadiusQuantityValue < LengthQuantityValue [
+        restricts hasMeasurementPrinciple to pkc-method-d:radiusMeasurementPrinciple
+        restricts all ^measures to RadiusQuantity
+    ]
+
+    concept LengthUnit < Unit [
+        restricts isUnitFor to pkc-method-d:lengthQuantityKind
+    ]
+
+    //
+    //
+    // Example 3: volume, section modulus
+    //
+    //
+
+    concept VolumeQuantityKind < QuantityKind
+
+    concept SectionModulusQuantityKind < QuantityKind
+
+    concept VolumeQuantity < Quantity [
+        restricts hasQuantityKind to pkc-method-d:volumeQuantityKind
+        restricts all isMeasuredBy to VolumeQuantityValue
+    ]
+
+    concept SectionModulusQuantity < Quantity [
+        restricts hasQuantityKind to pkc-method-d:sectionModulusQuantityKind
+        restricts all isMeasuredBy to SectionModulusQuantityValue
+    ]
+
+    concept VolumeQuantityValue < QuantityValue [
+        restricts hasQuantityKind to pkc-method-d:volumeQuantityKind
+        restricts all hasUnit to VolumeUnit
+    ]
+
+    concept SectionModulusQuantityValue < QuantityValue [
+        restricts hasQuantityKind to pkc-method-d:sectionModulusQuantityKind
+        restricts all hasUnit to SectionModulusUnit
+    ]
+
+    concept VolumeUnit < Unit [
+        restricts isUnitFor to pkc-method-d:volumeQuantityKind
+    ]
+
+    concept SectionModulusUnit < Unit [
+        restricts isUnitFor to pkc-method-d:sectionModulusQuantityKind
+    ]
+
+    // This concept prevents bundle closure from declaring VolumeUnit and
+    // SectionModulusUnit disjoint.
+    
+    concept VolumeAndSectionModulusUnit < VolumeUnit, SectionModulusUnit
+
+}

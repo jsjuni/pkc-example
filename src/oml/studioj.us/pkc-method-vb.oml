@@ -1,0 +1,5 @@
+vocabulary bundle <http://studioj.us/pkc-method-vb#> as pkc-example-vb {
+
+    includes <http://studioj.us/pkc-method-v#>
+    
+}

@@ -1,0 +1,17 @@
+PREFIX pkc-method-v: <http://studioj.us/pkc-method-v#>
+PREFIX pkc-model-d: <http://studioj.us/pkc-model-d#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?q ?qc ?qk ?qvc ?qv ?u WHERE {
+    ?q a pkc-method-v:Quantity ;
+        a [
+            rdfs:subClassOf [
+            a owl:Restriction ;
+            owl:onProperty pkc-method-v:isMeasuredBy ;
+            owl:allValuesFrom ?qvc
+            ] ;
+        ] ;
+        pkc-method-v:hasQuantityKind ?qk .
+    ?u pkc-method-v:isUnitFor ?qk .
+    ?qv a ?qvc .
+}

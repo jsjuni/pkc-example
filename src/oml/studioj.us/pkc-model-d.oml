@@ -1,0 +1,71 @@
+description <http://studioj.us/pkc-model-d#> as pkc-model-d {
+
+    uses <http://studioj.us/pkc-method-v#> as pkc-method-v
+
+    //
+    //
+    // Example 1: mass
+    //
+    //
+
+    instance mass_1 : pkc-method-v:MassQuantity
+    instance mass_2 : pkc-method-v:MassQuantity
+
+    instance mass_value_1 : pkc-method-v:MassQuantityValue
+    instance mass_value_2 : pkc-method-v:MassQuantityValue
+
+    //
+    //
+    // Example 2: length, height, width, diameter, radius
+    //
+    //
+
+    instance length_1 : pkc-method-v:LengthQuantity
+    instance length_2 : pkc-method-v:LengthQuantity
+
+    instance height_1 : pkc-method-v:HeightQuantity
+    instance height_2 : pkc-method-v:HeightQuantity
+    
+    instance width_1 : pkc-method-v:WidthQuantity
+    instance width_2 : pkc-method-v:WidthQuantity
+
+    instance diameter_1 : pkc-method-v:DiameterQuantity
+    instance diameter_2 : pkc-method-v:DiameterQuantity
+
+    instance radius_1 : pkc-method-v:RadiusQuantity
+    instance radius_2 : pkc-method-v:RadiusQuantity
+    
+    instance length_value_1 : pkc-method-v:LengthQuantityValue
+    instance length_value_2 : pkc-method-v:LengthQuantityValue
+
+    instance height_value_1 : pkc-method-v:HeightQuantityValue
+    instance height_value_2 : pkc-method-v:HeightQuantityValue
+
+    instance width_value_1 : pkc-method-v:WidthQuantityValue
+    instance width_value_2 : pkc-method-v:WidthQuantityValue
+
+    instance diameter_value_1 : pkc-method-v:DiameterQuantityValue
+    instance diameter_value_2 : pkc-method-v:DiameterQuantityValue
+
+    instance radius_value_1 : pkc-method-v:RadiusQuantityValue
+    instance radius_value_2 : pkc-method-v:RadiusQuantityValue
+    
+    //
+    //
+    // Example 3: volume, section modulus
+    //
+    //
+
+    instance volume_1 : pkc-method-v:VolumeQuantity
+    instance volume_2 : pkc-method-v:VolumeQuantity
+
+    instance section_modulus_1 : pkc-method-v:SectionModulusQuantity
+    instance section_modulus_2 : pkc-method-v:SectionModulusQuantity
+    
+    instance volume_value_1 : pkc-method-v:VolumeQuantityValue
+    instance volume_value_2 : pkc-method-v:VolumeQuantityValue
+
+    instance section_modulus_value_1 : pkc-method-v:SectionModulusQuantityValue
+    instance section_modulus_value_2 : pkc-method-v:SectionModulusQuantityValue
+    
+}
